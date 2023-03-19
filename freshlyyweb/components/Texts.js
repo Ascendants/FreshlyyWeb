@@ -159,6 +159,25 @@ module.exports.H8 = function (props) {
   );
 };
 
+module.exports.H9 = function (props) {
+  return (
+    <p
+      style={{
+        fontFamily: 'Poppins',
+        color: Theme.textColor,
+        fontSize: 12,
+        // marginTop: 15,
+        // marginBottom: 15,
+        margin: 6,
+        ...props.style,
+      }}
+    >
+      {props.children}
+    </p>
+  );
+};
+
+
 module.exports.Pr = function (props) {
   return (
     <span>
