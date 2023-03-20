@@ -1,8 +1,8 @@
-import React from 'react';
-import { H3, P } from './Texts';
-import Image from 'next/image';
-import benefit from '../images/benefit.svg';
-import shop from '../images/shop.svg';
+import React from "react";
+import { H3, P } from "./Texts";
+import Image from "next/image";
+import benefit from "../images/benefit.svg";
+import shop from "../images/shop.svg";
 export default function () {
   return (
     <>
@@ -20,12 +20,12 @@ export default function () {
           </P>
         </div>
         <div style={styles.image}>
-          <Image src={shop} style={styles.imageElement} alt='Shop' />
+          <Image src={shop} style={styles.imageElement} alt="Shop" />
         </div>
       </section>
       <section style={styles.descContainer}>
         <div style={styles.image}>
-          <Image src={benefit} style={styles.imageElement} alt='Benefits' />
+          <Image src={benefit} style={styles.imageElement} alt="Benefits" />
         </div>
         <div style={styles.description}>
           <H3>Why Freshlyy?</H3>
@@ -43,10 +43,10 @@ export default function () {
 }
 const styles = {
   descContainer: {
-    display: 'flex',
+    display: "flex",
     marginBottom: 50,
     gap: 60,
-    alignItems: 'center',
+    alignItems: "center",
   },
   description: {
     flex: 1,
@@ -55,7 +55,7 @@ const styles = {
     flex: 1,
   },
   imageElement: {
-    width: '100%',
-    height: 'auto',
+    width: "100%",
+    height: "auto",
   },
 };
