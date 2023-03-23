@@ -10,6 +10,7 @@ import dynamic from 'next/dynamic';
 import Footer from '../../../components/FooterSpecial';
 import Header from '../../../components/Header';
 import theme from '../../../styles/theme';
+import { useRouter } from 'next/router';
 
 const DragDropContext = dynamic(
   () =>
@@ -36,15 +37,23 @@ const Draggable = dynamic(
 
 export default function Home() {
   const API = process.env.NEXT_PUBLIC_FRESHLYY_API;
-  
+
+  const [draggedItem, setDraggedItem] = useState(null);
+
   const [tickets, setTickets] = useState([]);
 
   useEffect(() => {
     fetchTickets();
+    const interval = setInterval(() => {
+      fetchTickets();
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
+  const router = useRouter();
+
   const fetchTickets = async () => {
-    const response = await fetch(API + '/farmer/get-support-tickets');
+    const response = await fetch(API + '/farmer/support-tickets/');
     const data = await response.json();
     setTickets(data.supportTicket);
   }
@@ -67,20 +76,14 @@ export default function Home() {
     }
   }
 
-  async function deleteTicket(id) {
-    try {
-      await fetch(API + `/farmer/delete-support-ticket/${id}`,{
-        method: "DELETE",
-      });
-      const updatedTickets = tickets.filter((ticket) => ticket._id !== id);
-      setTickets(updatedTickets);
-    } catch (error) {
-      console.log(error);
-    }
+  function onDragStart(result) {
+    setDraggedItem(result[result.source.index]);
   }
 
-  
   function onDragEnd(result) {
+
+    setDraggedItem(null);
+
     if(!result.destination){
       return;
     }
@@ -127,7 +130,7 @@ export default function Home() {
         <div style={styles.container}>
           <DragDropContext onDragEnd={onDragEnd}>
           <div style={styles.column}>
-            <H4 style={styles.columnTopic}>Pending</H4>
+            <H4 style={{color: theme.secondary}}>Pending</H4>
             <Droppable droppableId='Pending'>
               {(provided) => (
                 <ul
@@ -138,22 +141,35 @@ export default function Home() {
                   {tickets
                     .filter((ticket) => ticket.status === "Pending")
                     .map((ticket, index) => (
-                      <Draggable key={ticket._id} draggableId={ticket._id} index={index}>
-                        {(provided) => (
+                      <Draggable key={ticket._id} draggableId={ticket._id} index={index} onDragStart={onDragStart} >
+                        {(provided, snapshot) => (
                         <li
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          style={styles.card}
+                          style={{
+                            ...styles.card,
+                            backgroundColor: theme.secondaryShade,
+                            opacity: snapshot.isDragging
+                              ? draggedItem?._id === ticket._id
+                                ? 0
+                                : 0.5
+                              : 1,
+                            boxShadow:
+                              snapshot.isDragging && draggedItem?._id === ticket._id
+                                ? '0 0 8px 2px rgba(0, 0, 0, 0.2)'
+                                : 'none',
+                            ...provided.draggableProps.style,
+                          }}
                         >
                           <H9>ID: {ticket._id}</H9>
                           <H9>UserEmail: {ticket.userEmail}</H9>
                           <H9>Name: {ticket.name}</H9>
-                          <H9>Contact Number: {ticket.number}</H9>
                           <H9>Issue: {ticket.issue}</H9>
-                          <H9>Description: {ticket.description}</H9>
-                          <H9>Status: {ticket.status}</H9>
-                          <button onClick={() => deleteTicket(ticket._id)}>Delete</button>
+                          {ticket.orderId && <H9>Order ID: {ticket.orderId}</H9>}
+                          <div style={styles.buttonContainer}>
+                            <button style={{...styles.btn, backgroundColor:theme.secondary}} onClick={()=>router.push('./support-ticket/ticket/' + ticket._id)}>Details</button>
+                          </div> 
                         </li>
                       )}
                       </Draggable>
@@ -164,7 +180,7 @@ export default function Home() {
             </Droppable>
           </div>
           <div style={styles.column}>
-            <H4 style={styles.columnTopic}>Processing</H4>
+            <H4 style={{color: theme.warning}}>Processing</H4>
             <Droppable droppableId='Processing'>
               {(provided) => (
                 <ul
@@ -175,22 +191,35 @@ export default function Home() {
                   {tickets
                     .filter((ticket) => ticket.status === "Processing")
                     .map((ticket, index) => (
-                      <Draggable key={ticket._id} draggableId={ticket._id} index={index}>
-                        {(provided) => (
+                      <Draggable key={ticket._id} draggableId={ticket._id} index={index} onDragStart={onDragStart}>
+                        {(provided, snapshot) => (
                         <li
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          style={styles.card}
+                          style={{
+                            ...styles.card,
+                            backgroundColor: theme.warningShade,
+                            opacity: snapshot.isDragging
+                              ? draggedItem?._id === ticket._id
+                                ? 0
+                                : 0.5
+                              : 1,
+                            boxShadow:
+                              snapshot.isDragging && draggedItem?._id === ticket._id
+                                ? '0 0 8px 2px rgba(0, 0, 0, 0.2)'
+                                : 'none',
+                            ...provided.draggableProps.style,
+                          }}
                         >
                           <H9>ID: {ticket._id}</H9>
                           <H9>UserEmail: {ticket.userEmail}</H9>
                           <H9>Name: {ticket.name}</H9>
-                          <H9>Contact Number: {ticket.number}</H9>
                           <H9>Issue: {ticket.issue}</H9>
-                          <H9>Description: {ticket.description}</H9>
-                          <H9>Status: {ticket.status}</H9>
-                          <button onClick={() => deleteTicket(ticket._id)}>Delete</button>
+                          {ticket.orderId && <H9>Order ID: {ticket.orderId}</H9>}
+                          <div style={styles.buttonContainer}>
+                            <button style={{...styles.btn, backgroundColor:theme.warning}} onClick={()=>router.push('./support-ticket/ticket/' + ticket._id)}>Details</button>
+                          </div> 
                         </li>
                       )}
                       </Draggable>
@@ -212,22 +241,35 @@ export default function Home() {
                   {tickets
                     .filter((ticket) => ticket.status === "Complete")
                     .map((ticket, index) => (
-                      <Draggable key={ticket._id} draggableId={ticket._id} index={index}>
-                        {(provided) => (
+                      <Draggable key={ticket._id} draggableId={ticket._id} index={index} onDragStart={onDragStart}>
+                        {(provided, snapshot) => (
                         <li
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          style={styles.card}
+                          style={{
+                            ...styles.card,
+                            opacity: snapshot.isDragging
+                              ? draggedItem?._id === ticket._id
+                                ? 0
+                                : 0.5
+                              : 1,
+                            boxShadow:
+                              snapshot.isDragging && draggedItem?._id === ticket._id
+                                ? '0 0 8px 2px rgba(0, 0, 0, 0.2)'
+                                : 'none',
+                            ...provided.draggableProps.style,
+                          }}
                         >
                           <H9>ID: {ticket._id}</H9>
                           <H9>UserEmail: {ticket.userEmail}</H9>
                           <H9>Name: {ticket.name}</H9>
                           <H9>Contact Number: {ticket.number}</H9>
                           <H9>Issue: {ticket.issue}</H9>
-                          <H9>Description: {ticket.description}</H9>
-                          <H9>Status: {ticket.status}</H9>
-                          <button onClick={() => deleteTicket(ticket._id)}>Delete</button>
+                          {ticket.orderId && <H9>Order ID: {ticket.orderId}</H9>}
+                          <div style={styles.buttonContainer}>
+                            <button style={{...styles.btn, backgroundColor:theme.primary}} onClick={()=>router.push('./support-ticket/ticket/' + ticket._id)}>Details</button>
+                          </div>              
                         </li>
                       )}
                       </Draggable>
@@ -287,7 +329,24 @@ const styles = {
     marginBottom: 20,
     textAlign: 'left',
     padding: 5,
+    
   },
+  btn:{
+    backgroundColor: theme.secondaryShade,
+    padding: 4,
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
+    marginLeft: 5,
+    color: theme.contrastTextColor,
+  },
+  buttonContainer:{
+    display: 'flex',
+    justifyContent: 'right',
+    marginRight: 5,
+    padding: 2,
+  }
 };
 
 export async function getServerSideProps() {
