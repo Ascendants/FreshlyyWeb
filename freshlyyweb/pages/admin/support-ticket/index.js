@@ -181,7 +181,7 @@ export default function Home() {
           </div>
           <div style={styles.column}>
             <H4 style={{color: theme.warning}}>Processing</H4>
-            <Droppable droppableId='Processing'>
+            <Droppable droppableId='Progress'>
               {(provided) => (
                 <ul
                   {...provided.droppableProps}
@@ -189,7 +189,7 @@ export default function Home() {
                   style={styles.ul}
                 >
                   {tickets
-                    .filter((ticket) => ticket.status === "Processing")
+                    .filter((ticket) => ticket.status === "Progress")
                     .map((ticket, index) => (
                       <Draggable key={ticket._id} draggableId={ticket._id} index={index} onDragStart={onDragStart}>
                         {(provided, snapshot) => (
