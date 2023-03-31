@@ -1,5 +1,5 @@
 import React from 'react';
-import Theme from '../styles/theme';
+import Theme from '../../styles/theme';
 
 module.exports.P = function (props) {
   return (

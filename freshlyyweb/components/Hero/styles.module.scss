@@ -1,0 +1,31 @@
+.section {
+  display: flex;
+}
+.subSection,
+.mainSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.mainSection {
+  margin-top: 15px;
+}
+.heroSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero {
+  width: 450px;
+  height: auto;
+}
+.cardSection {
+  margin-bottom: 1000px;
+}
+.cardArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
