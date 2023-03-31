@@ -1,0 +1,13 @@
+.cardContainer {
+  display: flex;
+  gap: 20px;
+  align-items: 'center';
+  width: 300px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.iconContainer {
+  padding: 10px;
+  background-color: var(--primaryShadeLighter);
+  border-radius: 10px;
+}

@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import React from 'react';
-import Theme from '../styles/theme';
 import { Link } from 'react-scroll';
-import logo from '../images/logo.svg';
-import { Button } from './Buttons';
+import logo from '../../images/logo.svg';
+import { Button } from '../Buttons';
+import styles from './styles.module.scss';
 
 export default function () {
   const [activeLink, setActiveLink] = React.useState('home');
@@ -12,17 +12,17 @@ export default function () {
   }
   return (
     <>
-      <section style={styles.section}>
-        <div style={styles.container}>
-          <div style={styles.logoArea}>
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <div className={styles.logoArea}>
             <Image
               src={logo}
               alt='Freshlyy Logo'
-              style={styles.logo}
+              className={styles.logo}
               priority
             />
           </div>
-          <div style={styles.menuArea}>
+          <div className={styles.menuArea}>
             <Link
               to='home'
               spy={true}
@@ -79,39 +79,3 @@ export default function () {
     </>
   );
 }
-const styles = {
-  section: {
-    height: '15vh',
-    width: '100%',
-    position: 'sticky',
-    top: 0,
-    zIndex: 10000,
-    backgroundColor: 'transparent',
-    backdropFilter: 'blur(100px)',
-    marginBottom: 20,
-  },
-  container: {
-    width: '70vw',
-    height: '15vh',
-    margin: 'auto',
-    display: 'flex',
-  },
-  logoArea: {
-    flex: 2,
-    display: 'flex',
-    alignItems: 'center',
-    padding: 20,
-  },
-  menuArea: {
-    flex: 3,
-    display: 'flex',
-    gap: 30,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: 20,
-  },
-  logo: {
-    height: 50,
-    width: 'auto',
-  },
-};

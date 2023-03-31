@@ -13,8 +13,8 @@ export default {
   textColor: '#555555',
   contrastTextColor: 'white',
   overlay: '#e0e0e0',
-  overlayShade: '#88888840',
-  overlayShadeDarker: '#ffffff50',
+  overlayShade: '#88888880',
+  overlayShadeDarker: '#888888bb',
   yellow: '#EFCB68',
   blue: '#3666ac',
 };
