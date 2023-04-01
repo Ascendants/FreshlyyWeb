@@ -1,0 +1,163 @@
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      height: 100vh ;
+    }
+    .navContainer {
+      padding: 40px;
+      background-color: var(--danger);
+      width: 50vh;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .logoarea {
+      // flex: 2,
+      display: flex;
+      // alignItems: "center",
+      justify-content: center;
+    }
+    .logo {
+      height: 50px;
+      width: auto;
+    }
+    .adminlogo {
+      display: flex;
+      justify-content: center;
+    }
+  
+    .adminimage {
+      width: auto;
+      height: 50px;
+      max-width: 100%;
+      max-height: 100%;
+      margin-top: 10px;
+    }
+    .menuItems {
+      // display: "flex",
+      list-style: none;
+    }
+    .liItems {
+      margin-left: 5;
+      display: flex;
+      flex-direction: row;
+    }
+    .logItems {
+      align-items: center;
+      margin-left: 5px;
+      margin-top: 60px;
+  
+      display: flex;
+      flex-direction: row;
+    }
+    .maincont {
+      display: flex;
+      flex: 1;
+  
+      flex-direction: column;
+    }
+    .mainImg {
+      justify-content: center;
+      align-items: center;
+      margin-left: 60px;
+    }
+    .mainimage {
+      width: 1000px;
+      align-items: center;
+    }
+    .boxcon {
+      display: flex;
+      flex-direction: row;
+      gap: 100px;
+      margin-top: 30px;
+      // backgroundColor: theme.tertiaryShade,
+      margin-left: 120px;
+    }
+    .boxcon2{
+      display: flex;
+      flex-direction: row;
+      gap: 100px;
+  
+      // backgroundColor: theme.tertiaryShade,
+      margin-left: 120px;
+      margin-top: 30px;
+    }
+    .boxcon3 {
+      display: flex;
+      flex-direction: row;
+      gap: 100px;
+  
+      // backgroundColor: theme.tertiaryShade,
+      margin-left: 120px;
+      margin-top: 30px;
+      margin-bottom: 200px;
+    }
+    .dashicon {
+      margin-top: -20px;
+    }
+    .proimage {
+      width: 40px;
+      height: 40px;
+      margin-left: -40px;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+    .dashimage {
+      width: 30px;
+      height: 30px;
+      margin-left: -40px;
+      margin-top: 20px;
+      margin-right: 15px;
+    }
+    .userimage {
+      width: 35px;
+      height: 35px;
+      margin-left: -40px;
+      margin-top: 20px;
+      margin-right: 15px;
+    }
+    .couponimage {
+      width: 40px;
+      height: 40px;
+      margin-left: -40px;
+      margin-top: 15px;
+      margin-right: 10px;
+    }
+    .ticketimage{
+      width: 43px;
+      height: 43px;
+      margin-left: -40px;
+      margin-top: 15px;
+      margin-right: 10px;
+    }
+    .statimage{
+      width: 35;
+      height: 35;
+      margin-left: -40;
+      margin-top: 15;
+      margin-bottom: 15;
+    }
+    .setimage{
+      width: 35;
+      height: 35;
+      margin-left: -40;
+      margin-top: 15;
+      margin-right: 15;
+    }
+    .logoutimage{
+      width: 25;
+      height: 25;
+      margin-left: -40;
+  
+      margin-right: 10,;
+    }
+    .foot{
+      margin-top: 300;
+    }
+    // li1: {
+    //   display: "flex",
+    //   flexDirection: "row",
+    // },
+  
+  
