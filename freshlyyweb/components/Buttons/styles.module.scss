@@ -1,0 +1,85 @@
+.button {
+  font-family: Poppins;
+  text-align: center;
+  &:hover {
+    filter: brightness(0.85);
+  }
+}
+.bigButton {
+  font-size: 20px;
+  padding: 10px 14px;
+  margin: 18px;
+  border-radius: 18px;
+}
+.normalButton {
+  font-size: 16px;
+  padding: 6px 14px;
+  margin: 5px;
+  border-radius: 12px;
+}
+.smallButton {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px;
+  margin: 6px;
+  border-radius: 10px;
+}
+.shadedPrimary {
+  background-color: var(--primaryShade);
+  color: var(--primary);
+}
+.filledPrimary {
+  background-color: var(--primary);
+  color: var(--contrastTextColor);
+}
+.shadedSecondary {
+  background-color: var(--secondaryShade);
+  color: var(--secondary);
+}
+.filledSecondary {
+  background-color: var(--secondary);
+  color: var(--contrastTextColor);
+}
+.shadedTertiary {
+  background-color: var(--tertiaryShade);
+  color: var(--tertiary);
+}
+.filledTertiary {
+  background-color: var(--tertiary);
+  color: var(--contrastTextColor);
+}
+.shadedWarning {
+  background-color: var(--warningShade);
+  color: var(--textColor);
+}
+.filledWarning {
+  background-color: var(--warning);
+  color: var(--textColor);
+}
+.shadedDanger {
+  background-color: var(--dangerShade);
+  color: var(--danger);
+}
+.filledDanger {
+  background-color: var(--danger);
+  color: var(--contrastTextColor);
+}
+.buttonIconBackground {
+  border-radius: 16px;
+  min-height: 48px;
+  min-width: 48px;
+  justify-content: center;
+  align-items: center;
+  font-size: 8px;
+  font-family: Poppins;
+  text-align: center;
+}
+.a {
+  all: unset;
+  text-decoration: underline;
+  color: var(--textColor);
+  cursor: pointer;
+  &:hover {
+    color: var(--primary);
+  }
+}
