@@ -1,5 +1,5 @@
 import React from "react";
-import { P, H3, H5, H6, A } from "../../components/Texts";
+import { P, H3, H5, H6, A, H2 } from "../../components/Texts";
 import theme from "../../styles/theme";
 import logo from "../../images/logo.svg";
 import Image from "next/image";
@@ -14,7 +14,8 @@ import ticketlogo from "../../images/ticket.png";
 import statlogo from "../../images/Statistics.png";
 import settingslogo from "../../images/settings.png";
 import logoutlogo from "../../images/logout.png";
-import ascendants from "../../images/ascendantst.svg";
+import createcoupon from "../../images/createcoupon.png";
+import Input from "../../components/Input";
 import Link from "next/link";
 import {
   faBasketShopping,
@@ -136,50 +137,14 @@ export default function () {
         </div>
         <div style={styles.maincont}>
           <div style={styles.mainImg}>
-            <Image src={Adminmain} style={styles.mainimage} alt="Main" />
+            <Image src={createcoupon} style={styles.sideimage} alt="Main" />
           </div>
-          <div style={styles.boxcon}>
-            <Admincard
-              icon={faIdCard}
-              number={40}
-              admintitle="Pending NIC Requests"
-            />
-            <Admincard
-              icon={faBoxesPacking}
-              number={6}
-              admintitle="Pending Products"
-            />
-            <Admincard
-              icon={faMoneyBillTransfer}
-              number={10}
-              admintitle="Withdraw Requests"
-            />
+          <div style={styles.line}>
+            <H2>Coupons</H2>
+            <H3 style={styles.cu}> Create Coupon</H3>
           </div>
-          <div style={styles.boxcon2}>
-            <Admincard
-              icon={faTicket}
-              number={data.numOfSupportTickets}
-              admintitle="Assigned Support Tickets"
-            />
-            <Admincard
-              icon={faBasketShopping}
-              number={data.numOfLiveProducts}
-              admintitle="Products"
-            />
-            <Admincard
-              icon={faUsers}
-              number={data.numOfUsers}
-              admintitle="Users"
-            />
-          </div>
-          <div style={styles.boxcon3}>
-            <Admincard icon={faTags} number={10} admintitle="Active Coupons" />
-            <Admincard icon={faChartLine} number={4} admintitle="Statistics" />
-            <Admincard
-              icon={faThumbsDown}
-              number={20}
-              admintitle="Reported Reviews"
-            />
+          <div>
+            <Input />
           </div>
         </div>
       </div>
@@ -249,41 +214,16 @@ const styles = {
     flexDirection: "column",
   },
   mainImg: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginLeft: 60,
+    justifyContent: "flex-end",
+    alignItems: "right",
+    marginLeft: 750,
   },
-  mainimage: {
-    width: "1000px",
-    alignItems: "center",
+  sideimage: {
+    width: "380px",
+    alignItems: "right",
+    height: "300px",
   },
-  boxcon: {
-    display: "flex",
-    flexDirection: "row",
-    gap: 100,
-    marginTop: 30,
-    // backgroundColor: theme.tertiaryShade,
-    marginLeft: 120,
-  },
-  boxcon2: {
-    display: "flex",
-    flexDirection: "row",
-    gap: 100,
 
-    // backgroundColor: theme.tertiaryShade,
-    marginLeft: 120,
-    marginTop: 30,
-  },
-  boxcon3: {
-    display: "flex",
-    flexDirection: "row",
-    gap: 100,
-
-    // backgroundColor: theme.tertiaryShade,
-    marginLeft: 120,
-    marginTop: 30,
-    marginBottom: 200,
-  },
   dashicon: {
     marginLeft: -20,
   },
@@ -344,7 +284,15 @@ const styles = {
     marginRight: 10,
   },
   foot: {
-    marginTop: 300,
+    marginTop: 350,
+  },
+  line: {
+    marginTop: -250,
+    marginLeft: 40,
+    gap: 50,
+  },
+  cu: {
+    marginTop: 40,
   },
   // li1: {
   //   display: "flex",
