@@ -1,0 +1,16 @@
+.descContainer {
+  display: flex;
+  margin-bottom: 50px;
+  gap: 4rem;
+  align-items: center;
+}
+.description {
+  flex: 1;
+}
+.image {
+  flex: 1;
+}
+.imageElement {
+  width: 100%;
+  height: auto;
+}

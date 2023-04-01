@@ -1,10 +1,9 @@
 import React from 'react';
-import Theme from '../styles/theme';
+import Theme from '../../styles/theme';
 
 module.exports.Button = function (props) {
   const [hover, setHover] = React.useState(false);
   let buttonBackground = {};
-  let buttonText = {};
   switch (props.color) {
     case 'shadedPrimary':
       buttonBackground = { ...buttonBackground, ...styles.shadedPrimary };
