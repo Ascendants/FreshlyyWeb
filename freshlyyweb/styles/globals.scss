@@ -1,11 +1,15 @@
+@use './theme' as t;
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
-body,html{
-  margin:0;
+
+body,
+html {
+  margin: 0;
+  font-family: 'Poppins';
 }
-*{
+* {
   box-sizing: border-box;
 }
-button{
-  all:unset;
-  cursor:pointer;
+button {
+  all: unset;
+  cursor: pointer;
 }

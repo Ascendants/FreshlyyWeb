@@ -1,21 +1,21 @@
-import React from "react";
-import { P, H3, H5, H6, A } from "../../components/Texts";
-import theme from "../../styles/theme";
-import logo from "../../images/logo.svg";
-import Image from "next/image";
-import benefit from "../../images/benefit.svg";
-import shop from "../../images/shop.svg";
-import adminlogo from "../../images/profile.png";
-import productlogo from "../../images/Productad.png";
-import dashboardlogo from "../../images/Dash.png";
-import userlogo from "../../images/Users.png";
-import couponlogo from "../../images/Coupon.png";
-import ticketlogo from "../../images/ticket.png";
-import statlogo from "../../images/Statistics.png";
-import settingslogo from "../../images/settings.png";
-import logoutlogo from "../../images/logout.png";
-import ascendants from "../../images/ascendantst.svg";
-import Link from "next/link";
+import React from 'react';
+import { P, H3, H5, H6, A } from '../../components/Texts';
+import theme from '../../styles/theme';
+import logo from '../../images/logo.svg';
+import Image from 'next/image';
+import benefit from '../../images/benefit.svg';
+import shop from '../../images/shop.svg';
+import adminlogo from '../../images/profile.png';
+import productlogo from '../../images/Productad.png';
+import dashboardlogo from '../../images/Dash.png';
+import userlogo from '../../images/Users.png';
+import couponlogo from '../../images/Coupon.png';
+import ticketlogo from '../../images/ticket.png';
+import statlogo from '../../images/Statistics.png';
+import settingslogo from '../../images/settings.png';
+import logoutlogo from '../../images/logout.png';
+import ascendants from '../../images/ascendantst.svg';
+import Link from 'next/link';
 import {
   faBasketShopping,
   faBorderAll,
@@ -26,49 +26,49 @@ import {
   faTags,
   faTicket,
   faUsers,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faIdCard, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
-import {} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faIdCard, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
+import {} from '@fortawesome/free-brands-svg-icons';
 
-import FooterSpecial from "../../components/FooterSpecial";
-import Adminmain from "../../images/Adminmain.png.png";
-import Admincard from "../../components/Admincard";
+import FooterSpecial from '../../components/FooterSpecial';
+import Adminmain from '../../images/Adminmain.png.png';
+import AdminCard from '../../components/AdminCard';
 
 export default function () {
   const API = process.env.NEXT_PUBLIC_FRESHLYY_API;
   const [data, setData] = React.useState({});
   React.useEffect(() => {
-    fetch(API + "/farmer/adminDashboard/", {
+    fetch(API + '/farmer/adminDashboard/', {
       //getting data from the backend (all products)
-      method: "GET",
+      method: 'GET',
       headers: {
-        useremail: "harini@freshlyy.com",
+        useremail: 'harini@freshlyy.com',
       },
     })
       .then((res) => res.json())
       .then((res) => {
-        if (res.message != "Success") throw new Error("Something went wrong");
+        if (res.message != 'Success') throw new Error('Something went wrong');
         setData(res);
       })
       .catch((err) => console.log(err));
   }, []);
   return (
     <>
-      {" "}
+      {' '}
       <div style={styles.container}>
         <div style={styles.navContainer}>
           <div style={styles.logoarea}>
             <Image
               src={logo}
-              alt="Freshlyy Logo"
+              alt='Freshlyy Logo'
               style={styles.logo}
               priority
             />
           </div>
           <div style={styles.adminlogo}>
-            <Image src={adminlogo} style={styles.adminimage} alt="Shop" />
+            <Image src={adminlogo} style={styles.adminimage} alt='Shop' />
           </div>
           <div style={styles.menu}>
             <ul style={styles.menuItems}>
@@ -77,7 +77,7 @@ export default function () {
                 <Image
                   src={dashboardlogo}
                   style={styles.dashimage}
-                  alt="Product"
+                  alt='Product'
                 />
                 <H5> Dashboard </H5>
               </li>
@@ -86,20 +86,20 @@ export default function () {
                 <Image
                   src={productlogo}
                   style={styles.proimage}
-                  alt="Product"
+                  alt='Product'
                 />
-                <H5> Products </H5>{" "}
+                <H5> Products </H5>{' '}
               </li>
 
               <li style={styles.liItems}>
-                <Image src={userlogo} style={styles.userimage} alt="Product" />
+                <Image src={userlogo} style={styles.userimage} alt='Product' />
                 <H5> Users </H5>
               </li>
               <li style={styles.liItems}>
                 <Image
                   src={couponlogo}
                   style={styles.couponimage}
-                  alt="Product"
+                  alt='Product'
                 />
                 <H5> Coupons </H5>
               </li>
@@ -107,19 +107,19 @@ export default function () {
                 <Image
                   src={ticketlogo}
                   style={styles.ticketimage}
-                  alt="Product"
+                  alt='Product'
                 />
                 <H5> Support Tickets</H5>
               </li>
               <li style={styles.liItems}>
-                <Image src={statlogo} style={styles.statimage} alt="Product" />
+                <Image src={statlogo} style={styles.statimage} alt='Product' />
                 <H5> Statistics</H5>
               </li>
               <li style={styles.liItems}>
                 <Image
                   src={settingslogo}
                   style={styles.setimage}
-                  alt="Product"
+                  alt='Product'
                 />
                 <H5> Settings </H5>
               </li>
@@ -127,7 +127,7 @@ export default function () {
                 <Image
                   src={logoutlogo}
                   style={styles.logoutimage}
-                  alt="Product"
+                  alt='Product'
                 />
                 <H6> Logout </H6>
               </li>
@@ -136,49 +136,49 @@ export default function () {
         </div>
         <div style={styles.maincont}>
           <div style={styles.mainImg}>
-            <Image src={Adminmain} style={styles.mainimage} alt="Main" />
+            <Image src={Adminmain} style={styles.mainimage} alt='Main' />
           </div>
           <div style={styles.boxcon}>
-            <Admincard
+            <AdminCard
               icon={faIdCard}
               number={40}
-              admintitle="Pending NIC Requests"
+              admintitle='Pending NIC Requests'
             />
-            <Admincard
+            <AdminCard
               icon={faBoxesPacking}
               number={6}
-              admintitle="Pending Products"
+              admintitle='Pending Products'
             />
-            <Admincard
+            <AdminCard
               icon={faMoneyBillTransfer}
               number={10}
-              admintitle="Withdraw Requests"
+              admintitle='Withdraw Requests'
             />
           </div>
           <div style={styles.boxcon2}>
-            <Admincard
+            <AdminCard
               icon={faTicket}
               number={data.numOfSupportTickets}
-              admintitle="Assigned Support Tickets"
+              admintitle='Assigned Support Tickets'
             />
-            <Admincard
+            <AdminCard
               icon={faBasketShopping}
               number={data.numOfLiveProducts}
-              admintitle="Products"
+              admintitle='Products'
             />
-            <Admincard
+            <AdminCard
               icon={faUsers}
               number={data.numOfUsers}
-              admintitle="Users"
+              admintitle='Users'
             />
           </div>
           <div style={styles.boxcon3}>
-            <Admincard icon={faTags} number={10} admintitle="Active Coupons" />
-            <Admincard icon={faChartLine} number={4} admintitle="Statistics" />
-            <Admincard
+            <AdminCard icon={faTags} number={10} admintitle='Active Coupons' />
+            <AdminCard icon={faChartLine} number={4} admintitle='Statistics' />
+            <AdminCard
               icon={faThumbsDown}
               number={20}
-              admintitle="Reported Reviews"
+              admintitle='Reported Reviews'
             />
           </div>
         </div>
@@ -191,83 +191,83 @@ export default function () {
 }
 const styles = {
   container: {
-    display: "flex",
-    flexDirection: "row",
-    height: "100vh",
+    display: 'flex',
+    flexDirection: 'row',
+    height: '100vh',
   },
   navContainer: {
     padding: 40,
     backgroundColor: theme.tertiaryShade,
     width: 230,
     height: 918,
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
   },
   logoarea: {
     // flex: 2,
-    display: "flex",
+    display: 'flex',
     // alignItems: "center",
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   logo: {
     height: 50,
-    width: "auto",
+    width: 'auto',
   },
   adminlogo: {
-    display: "flex",
-    justifyContent: "center",
+    display: 'flex',
+    justifyContent: 'center',
   },
 
   adminimage: {
-    width: "auto",
+    width: 'auto',
     height: 50,
-    maxWidth: "100%",
-    maxHeight: "100%",
+    maxWidth: '100%',
+    maxHeight: '100%',
     marginTop: 10,
   },
   menuItems: {
     // display: "flex",
-    listStyle: "none",
+    listStyle: 'none',
   },
   liItems: {
     marginLeft: 5,
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
   },
   logItems: {
-    alignItems: "center",
+    alignItems: 'center',
     marginLeft: 5,
     marginTop: 60,
 
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
   },
   maincont: {
-    display: "flex",
+    display: 'flex',
     flex: 1,
 
-    flexDirection: "column",
+    flexDirection: 'column',
   },
   mainImg: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     marginLeft: 60,
   },
   mainimage: {
-    width: "1000px",
-    alignItems: "center",
+    width: '1000px',
+    alignItems: 'center',
   },
   boxcon: {
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
     gap: 100,
     marginTop: 30,
     // backgroundColor: theme.tertiaryShade,
     marginLeft: 120,
   },
   boxcon2: {
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
     gap: 100,
 
     // backgroundColor: theme.tertiaryShade,
@@ -275,8 +275,8 @@ const styles = {
     marginTop: 30,
   },
   boxcon3: {
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
     gap: 100,
 
     // backgroundColor: theme.tertiaryShade,

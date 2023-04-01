@@ -8,6 +8,7 @@ import ContactUs from '../components/ContactUs';
 import Footer from '../components/FooterSpecial';
 import Header from '../components/Header';
 import theme from '../styles/theme';
+import styles from './index.module.scss';
 
 export default function Home() {
   const inView = {
@@ -26,9 +27,9 @@ export default function Home() {
   };
   return (
     <>
-      <div style={styles.backgroundGreen}></div>
+      <div className={styles.backgroundGreen}></div>
       <Header />
-      <main style={styles.main}>
+      <main className={styles.main}>
         <motion.section
           id='home'
           variants={inView}
@@ -45,7 +46,7 @@ export default function Home() {
           whileInView='enter'
           viewport={{ once: true }}
         >
-          <H2 style={styles.sectionTitle}>About Us</H2>
+          <H2 className={styles.sectionTitle}>About Us</H2>
           <AboutUs />
         </motion.section>
         <motion.section
@@ -55,7 +56,7 @@ export default function Home() {
           whileInView='enter'
           viewport={{ once: true }}
         >
-          <H2 style={styles.sectionTitle}>Contact Us</H2>
+          <H2 className={styles.sectionTitle}>Contact Us</H2>
           <ContactUs />
         </motion.section>
       </main>
@@ -64,20 +65,6 @@ export default function Home() {
   );
 }
 
-const styles = {
-  backgroundGreen: {
-    backgroundColor: theme.primaryShadeLighter,
-    height: '80vh',
-    width: '100%',
-    position: 'absolute',
-    zIndex: -1999,
-  },
-  main: {
-    width: '70vw',
-    margin: 'auto',
-  },
-  sectionTitle: {
-    textAlign: 'center',
-    margin: 100,
-  },
-};
+// const styles = {
+
+// };

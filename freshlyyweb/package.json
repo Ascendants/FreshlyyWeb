@@ -24,6 +24,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
     "react-scroll": "^1.8.9",
+    "sass": "^1.60.0",
     "validator": "^13.7.0"
   }
 }

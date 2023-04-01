@@ -1,0 +1,15 @@
+.backgroundGreen {
+  background-color: var(--primaryShadeLighter);
+  height: 80vh;
+  width: 100%;
+  position: absolute;
+  z-index: -1999;
+}
+.main {
+  width: 70vw;
+  margin: auto;
+}
+.sectionTitle {
+  text-align: center;
+  margin: 100px;
+}

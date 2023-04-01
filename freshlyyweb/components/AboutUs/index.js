@@ -1,13 +1,14 @@
-import React from "react";
-import { H3, P } from "./Texts";
-import Image from "next/image";
-import benefit from "../images/benefit.svg";
-import shop from "../images/shop.svg";
+import React from 'react';
+import { H3, P } from '../Texts';
+import Image from 'next/image';
+import benefit from '../../images/benefit.svg';
+import shop from '../../images/shop.svg';
+import styles from './styles.module.scss';
 export default function () {
   return (
     <>
-      <section style={styles.descContainer}>
-        <div style={styles.description}>
+      <section className={styles.descContainer}>
+        <div className={styles.description}>
           <H3>What's Freshlyy?</H3>
           <P>
             Freshlyy is an app that connects farmers and customers together to
@@ -19,15 +20,15 @@ export default function () {
             prices, by totally eliminating the intermediaries in between.
           </P>
         </div>
-        <div style={styles.image}>
-          <Image src={shop} style={styles.imageElement} alt="Shop" />
+        <div className={styles.image}>
+          <Image src={shop} className={styles.imageElement} alt='Shop' />
         </div>
       </section>
-      <section style={styles.descContainer}>
-        <div style={styles.image}>
-          <Image src={benefit} style={styles.imageElement} alt="Benefits" />
+      <section className={styles.descContainer}>
+        <div className={styles.image}>
+          <Image src={benefit} className={styles.imageElement} alt='Benefits' />
         </div>
-        <div style={styles.description}>
+        <div className={styles.description}>
           <H3>Why Freshlyy?</H3>
           <P>
             The platform is 100% free to use for both farmers and customers.
@@ -41,21 +42,3 @@ export default function () {
     </>
   );
 }
-const styles = {
-  descContainer: {
-    display: "flex",
-    marginBottom: 50,
-    gap: 60,
-    alignItems: "center",
-  },
-  description: {
-    flex: 1,
-  },
-  image: {
-    flex: 1,
-  },
-  imageElement: {
-    width: "100%",
-    height: "auto",
-  },
-};
