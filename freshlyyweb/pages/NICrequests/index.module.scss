@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh ;
+}
+.maincont {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  background-color: var(--primary);
+
+  // margin-top: auto;
+  // justify-content: flex-end;
+}
+.application {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+}
+.foot{
+  margin-top: 300px;
+}
+
+.line {
+ 
+  text-align: center;
+}
+.cu{
+  margin-top: 40px;
+}
+
+.form {
+  background-color: var(--tertiaryShade);
+//   width: 35rem;
+//  margin-left: 2.5rem;
+ border-radius: 5px;
+
+
+}
+
+.form input{
+margin-left: 10px;
+margin-top: 10px;
+}
+
+.form button{
+margin-left: 13rem;
+margin-bottom: 2rem;
+}
+

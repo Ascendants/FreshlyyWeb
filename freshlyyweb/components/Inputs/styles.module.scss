@@ -3,11 +3,12 @@
   span {
     margin-left: 0.4rem;
     text-align: left;
+    font-family: Poppins;
   }
 }
 .input,
 .textarea {
-  width: 100%;
+  width: 90%;
   margin: 0.2rem;
   border: 0;
   font-size: 1rem;
@@ -16,7 +17,7 @@
   padding: 6px 8px;
   border-radius: 8px;
   background-color: var(--overlay);
-  font-family: inherit;
+  font-family: Poppins;
   backdrop-filter: blur(14.5px);
   -webkit-backdrop-filter: blur(14.5px);
   transition: background-color 0.2s;
@@ -24,6 +25,7 @@
     background-color: var(--overlayShadeDarker);
     color: var(--contrastTextColor);
   }
+
 }
 .errorMessage {
   margin-bottom: 1rem;
