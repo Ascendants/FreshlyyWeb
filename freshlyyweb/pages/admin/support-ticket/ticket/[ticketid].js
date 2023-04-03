@@ -1,7 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-import { P, H1, H2, H3, H4, H5, H6, H7, H8, H9, Pr } from '../../../../components/Texts';
+import {
+  P,
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+  H7,
+  H8,
+  H9,
+  Pr,
+} from '../../../../components/Texts';
 import { motion } from 'framer-motion';
 
 import Footer from '../../../../components/FooterSpecial';
@@ -13,29 +25,33 @@ export default function Home() {
   const API = process.env.NEXT_PUBLIC_FRESHLYY_API;
 
   const router = useRouter();
-  const ticketId = router.query.ticketid;
-  console.log(router.query.ticketid);
+  // const ticketId = router.query.ticketid;
 
-  const [ticket, setTicket] = useState([]);
+  const [ticket, setTicket] = useState({});
   const [order, setOrder] = useState([]);
 
   useEffect(() => {
-    getTicket();
-    getOrder();
+    if (!router.query?.ticketid) {
+      return;
+    }
+    getTicket(router.query.ticketid);
+    getOrder(router.query.ticketid);
     // {ticket.orderId && getOrder()};
-  }, []);
+  }, [router.query]);
 
-  const getTicket = async () => {
+  const getTicket = async (ticketId) => {
     const response = await fetch(API + '/farmer/support-ticket/' + ticketId);
     const data = await response.json();
     console.log(data.supportTicket);
     setTicket(data.supportTicket);
     console.log(ticket);
-  }
+  };
 
-  const getOrder = async () => {
+  const getOrder = async (ticketId) => {
     console.log('im here');
-    const response = await fetch(API + '/customer/getSpecificOrder/' + ticket.orderId);
+    const response = await fetch(
+      API + '/customer/getSpecificOrder/' + ticket.orderId
+    );
     const data = await response.json();
     console.log(data.order);
     setOrder(data.order);
@@ -45,9 +61,8 @@ export default function Home() {
   async function deleteTicket(id) {
     try {
       await fetch(API + `/farmer/delete-support-ticket/${id}`, {
-        method: "DELETE",
+        method: 'DELETE',
       });
-      
     } catch (error) {
       console.log(error);
     }
@@ -55,19 +70,19 @@ export default function Home() {
 
   const ticketStatus = ticket.status;
   const updatedStatus = () => {
-    if (ticketStatus === "Pending") {
-      return "Progress";
-    } else { 
-      return "Completed";
+    if (ticketStatus === 'Pending') {
+      return 'Progress';
+    } else {
+      return 'Completed';
     }
-  }
+  };
 
   async function updateTicketStatus(id, status) {
     try {
       await fetch(API + `/farmer/update-support-ticket/${id}`, {
-        method: "PUT",
+        method: 'PUT',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ status }),
       });
@@ -97,7 +112,7 @@ export default function Home() {
       <main style={styles.main}>
         <H3 style={styles.mainTopic}>Support Ticket Details</H3>
         <div style={styles.container}>
-          <motion.div variants={inView} initial="hidden" animate="enter"> 
+          <motion.div variants={inView} initial='hidden' animate='enter'>
             <H5>User Details</H5>
             <P>ID: {ticket._id}</P>
             <P>User-Email: {ticket.userEmail}</P>
@@ -108,8 +123,8 @@ export default function Home() {
             <P>Description: {ticket.description}</P>
             <P>Status: {ticket.status}</P>
           </motion.div>
-          {ticket.orderId && 
-            <motion.div variants={inView} initial="hidden" animate="enter"> 
+          {ticket.orderId && (
+            <motion.div variants={inView} initial='hidden' animate='enter'>
               <H5>Farmer Details</H5>
               <P>ID: #{order._id}</P>
               <P>Farmer: {order.farmer}</P>
@@ -118,14 +133,27 @@ export default function Home() {
               <P>Farmer Rating: {order.farmerRating}</P>
               {/* <P>Farmer: {order.farmer}</P> */}
             </motion.div>
-          }
-          </div>
-          <div style={styles.btnContainer}>
-          <button style={styles.btn} onClick={() => deleteTicket(ticket._id)}><H9 style={{ color: theme.contrastTextColor, textAlign: 'center' }}>Delete</H9></button>
-          {ticket.status !== "Completed" && 
-            <button style={styles.btn2} onClick={() => updateTicketStatus(ticket._id, updatedStatus())}><H9 style={{ color: theme.contrastTextColor, textAlign: 'center' }}>Update status</H9></button>
-          }
-          </div>
+          )}
+        </div>
+        <div style={styles.btnContainer}>
+          <button style={styles.btn} onClick={() => deleteTicket(ticket._id)}>
+            <H9 style={{ color: theme.contrastTextColor, textAlign: 'center' }}>
+              Delete
+            </H9>
+          </button>
+          {ticket.status !== 'Completed' && (
+            <button
+              style={styles.btn2}
+              onClick={() => updateTicketStatus(ticket._id, updatedStatus())}
+            >
+              <H9
+                style={{ color: theme.contrastTextColor, textAlign: 'center' }}
+              >
+                Update status
+              </H9>
+            </button>
+          )}
+        </div>
       </main>
       <Footer />
     </>
@@ -156,13 +184,12 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
-
   },
   btnContainer: {
     display: 'flex',
     justifyContent: 'center',
     marginTop: 10,
-    marginBottom: 30,   
+    marginBottom: 30,
   },
   btn: {
     backgroundColor: theme.danger,
@@ -174,5 +201,5 @@ const styles = {
     borderRadius: 10,
     minWidth: 70,
     marginLeft: 10,
-  }
+  },
 };
