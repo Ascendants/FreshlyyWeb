@@ -39,14 +39,11 @@ export default function () {
         <div className={styles.navbar}>
           <AdminNavbar />
         </div>
-        <div className={styles.maincont}>
-          <div className={styles.mainImg}>
-            <Image src={createcoupon} className={styles.sideimage} alt="Main" />
-          </div>
-          <div className={styles.line}>
-            <H2>Coupons</H2>
-            <H3 className={styles.cu}> Create Coupon</H3>
-          </div>
+        <div className={styles.line}>
+          <H3>Pending NIC Requests</H3>
+        </div>
+        <div className={styles.maincont}></div>
+        <div className={styles.application}>
           <div className={styles.form}>
             <TextInput
               type="text"

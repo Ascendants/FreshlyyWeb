@@ -36,6 +36,7 @@ import FooterSpecial from "../../components/FooterSpecial";
 import Adminmain from "../../images/Adminmain.png.png";
 import Admincard from "../../components/Admincard";
 import styles from "./index.module.scss";
+import AdminNavbar from "../../components/AdminNavbar";
 
 export default function () {
   const API = process.env.NEXT_PUBLIC_FRESHLYY_API;
@@ -59,89 +60,8 @@ export default function () {
     <>
       {" "}
       <div className={styles.container}>
-        <div className={styles.navContainer}>
-          <div className={styles.logoarea}>
-            <Image
-              src={logo}
-              alt="Freshlyy Logo"
-              className={styles.logo}
-              priority
-            />
-          </div>
-          <div className={styles.adminlogo}>
-            <Image src={adminlogo} className={styles.adminimage} alt="Shop" />
-          </div>
-          <div className={styles.menu}>
-            <ul className={styles.menuItems}>
-              <li className={styles.liItems}>
-                {/* <FontAwesomeIcon icon={faBorderAll} style={styles.dashicon} /> */}
-                <Image
-                  src={dashboardlogo}
-                  className={styles.dashimage}
-                  alt="Product"
-                />
-                <H5> Dashboard </H5>
-              </li>
-
-              <li className={styles.liItems}>
-                <Image
-                  src={productlogo}
-                  className={styles.proimage}
-                  alt="Product"
-                />
-                <H5> Products </H5>{" "}
-              </li>
-
-              <li className={styles.liItems}>
-                <Image
-                  src={userlogo}
-                  className={styles.userimage}
-                  alt="Product"
-                />
-                <H5> Users </H5>
-              </li>
-              <li className={styles.liItems}>
-                <Image
-                  src={couponlogo}
-                  className={styles.couponimage}
-                  alt="Product"
-                />
-                <H5> Coupons </H5>
-              </li>
-              <li className={styles.liItems}>
-                <Image
-                  src={ticketlogo}
-                  className={styles.ticketimage}
-                  alt="Product"
-                />
-                <H5> Support Tickets</H5>
-              </li>
-              <li className={styles.liItems}>
-                <Image
-                  src={statlogo}
-                  className={styles.statimage}
-                  alt="Product"
-                />
-                <H5> Statistics</H5>
-              </li>
-              <li className={styles.liItems}>
-                <Image
-                  src={settingslogo}
-                  className={styles.setimage}
-                  alt="Product"
-                />
-                <H5> Settings </H5>
-              </li>
-              <li className={styles.logItems}>
-                <Image
-                  src={logoutlogo}
-                  className={styles.logoutimage}
-                  alt="Product"
-                />
-                <H6> Logout </H6>
-              </li>
-            </ul>
-          </div>
+        <div className={styles.navbar}>
+          <AdminNavbar />
         </div>
         <div className={styles.maincont}>
           <div className={styles.mainImg}>

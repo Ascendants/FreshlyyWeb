@@ -6,9 +6,9 @@
     }
     .navContainer {
       padding: 40px;
-      background-color: var(--danger);
-      width: 50vh;
-      height: 100vh;
+      background-color: var(--tertiaryShade);
+      width: 250px;
+      height: 149vh;
       display: flex;
       flex-direction: column;
     }
@@ -132,28 +132,29 @@
       margin-right: 10px;
     }
     .statimage{
-      width: 35;
-      height: 35;
-      margin-left: -40;
-      margin-top: 15;
-      margin-bottom: 15;
+      width: 35px;
+      height: 35px;
+      margin-left: -40px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      margin-right: 15px;
     }
     .setimage{
-      width: 35;
-      height: 35;
-      margin-left: -40;
-      margin-top: 15;
-      margin-right: 15;
+      width: 35px;
+      height: 35px;
+      margin-left: -40px;
+      margin-top: 15px;
+      margin-right: 15px;
     }
     .logoutimage{
-      width: 25;
-      height: 25;
-      margin-left: -40;
+      width: 25px;
+      height: 25px;
+      margin-left: -40px;
   
-      margin-right: 10,;
+      margin-right: 10px;
     }
     .foot{
-      margin-top: 300;
+      margin-top: 300px;
     }
     // li1: {
     //   display: "flex",
