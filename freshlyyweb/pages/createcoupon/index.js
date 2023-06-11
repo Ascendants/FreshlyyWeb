@@ -4,7 +4,7 @@ import theme from "../../styles/theme";
 import logo from "../../images/logo.svg";
 import Image from "next/image";
 import {} from "@fortawesome/free-brands-svg-icons";
-
+import axios from "axios";
 import Adminmain from "../../images/Adminmain.png.png";
 import Admincard from "../../components/Admincard";
 import styles from "./index.module.scss";
@@ -20,10 +20,6 @@ export default function () {
   const [coupons, setCoupons] = useState([]);
   useEffect(() => {
     fetchCoupons();
-    // const interval = setInterval(() => {
-    //   fetchCoupons();
-    // }, );
-    // return () => clearInterval(interval);
   }, []);
   const fetchCoupons = async () => {
     const response = await fetch(API + "/admin/coupons/");
@@ -36,11 +32,7 @@ export default function () {
   const [createedate, setcreatedate] = useState("");
   const [percentage, setpercentage] = useState("");
   const [expiredate, setexpiredate] = useState("");
-  // const handleCouponCode = (value) => {
-  //   const value = event.target.value;
-  //   console.log("hello");
-  //   setCouponCode(value);
-  // };
+
   const handleCouponCode = (event) => {
     const value = event.target.value;
     setCouponCode(value);
@@ -56,26 +48,25 @@ export default function () {
   };
   console.log(couponCode, createedate, percentage, expiredate);
 
-  // const [data, setData] = React.useState({});
-  // const [couponCode, setCouponCode] = React.useState("");
-
-  // const handleSubmit = async () => {
-  //   console.log("hello");
-  //   try {
-  //     const response = await fetch(API + "/admin/createCoupons", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         cCode: couponCode,
-  //       }),
-  //     });
-  //     const data = await response.json();
-  //   } catch (e) {
-  //     console.error(error);
-  //   }
-  // };
+  const handleSubmit = async () => {
+    const dataurl = API + "/admin/createCoupons";
+    const data = {
+      userEmail: "harini@freshlyy.com",
+      presentage: percentage,
+      cCode: couponCode,
+      cDate: createedate,
+      eDate: expiredate,
+    };
+    try {
+      axios.post(dataurl, data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // const handleCouponCode = (text) => {
   //   setCouponCode(text);
@@ -186,17 +177,13 @@ export default function () {
                   error=''
                   onChange={handleExpireDate}
                 />
-
-                <Button
-                  size='normal'
-                  color='filledPrimary'
-                  title='Create Coupon'
-
-                  // onPress={handleSubmit}
-                  // onClick={() => alert("Button clicked!")}
-                >
-                  {" "}
-                </Button>
+                <div onClick={() => handleSubmit()}>
+                  <Button
+                    size='normal'
+                    color='filledPrimary'
+                    title='Create Coupon'
+                  ></Button>
+                </div>
               </div>
             </div>
           </div>

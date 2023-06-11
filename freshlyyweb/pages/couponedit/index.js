@@ -4,7 +4,7 @@ import theme from "../../styles/theme";
 import logo from "../../images/logo.svg";
 import Image from "next/image";
 import {} from "@fortawesome/free-brands-svg-icons";
-
+import axios from "axios";
 import Adminmain from "../../images/Adminmain.png.png";
 import Admincard from "../../components/Admincard";
 import styles from "./index.module.scss";
@@ -20,37 +20,55 @@ export default function () {
   const [coupons, setCoupons] = useState([]);
   useEffect(() => {
     fetchCoupons();
-    // const interval = setInterval(() => {
-    //   fetchCoupons();
-    // }, );
-    // return () => clearInterval(interval);
   }, []);
   const fetchCoupons = async () => {
-    const response = await fetch(API + "/admin/coupons/");
+    const response = await fetch(API + "/admin/editCoupons/");
     const data = await response.json();
-    setCoupons(data.coupons);
+    setCoupons(data.coupon);
   };
   console.log(coupons);
 
-  //   const [couponCode, setCouponCode] = useState("");
-  //   const [createedate, setcreatedate] = useState("");
-  //   const [percentage, setpercentage] = useState("");
-  //   const [expiredate, setexpiredate] = useState("");
-  //   const handleCouponCode = (value) => {
-  //     setCouponCode(value);
+  const activateCoupens = (id) => {
+    const dataurl = API + `/admin/updateCoupons/${id}`;
+    axios.put(
+      dataurl,
+      { status: "Active" },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    fetchCoupons();
+  };
 
-  //     setpercentage(value);
-  //     setexpiredate(value);
-  //   };
-  //   const handleCreateDate = (value) => {
-  //     setcreatedate(value);
-  //   };
-  //   const handlepercentage = (value) => {
-  //     setpercentage(value);
-  //   };
-  //   const handleExpireDate = (value) => {
-  //     setexpiredate(value);
-  //   };
+  const deActivateCoupens = (id) => {
+    const dataurl = API + `/admin/updateCoupons/${id}`;
+    axios.put(
+      dataurl,
+      { status: "Deactive" },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    fetchCoupons();
+  };
+
+  const deleteCoupens = (id) => {
+    const dataurl = API + `/admin/updateCoupons/${id}`;
+    axios.put(
+      dataurl,
+      { status: "delete" },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    fetchCoupons();
+  };
 
   return (
     <>
@@ -70,39 +88,55 @@ export default function () {
             </div>
             <div className={styles.line}>
               <H2>Coupons</H2>
+              <H3>Coupon List</H3>
             </div>
-            <div className={styles.box}>
-              <div className={styles.form}>
-                <H3 className={styles.cu}> Create Farmer Requested Coupon</H3>
-                {/* <CouponCard admintitle='Hey'></CouponCard> */}
-                <div className={styles.couponcard}>
-                  {coupons.map((coupon) => (
-                    <a>
+            <div className={styles.form}>
+              <div className={styles.coupon}>
+                {coupons.map((coupon) => (
+                  <div className='couponWrap'>
+                    <div className={styles.couponcard}>
                       <CouponCard
                         percentage={coupon.presentage}
                         couponcode={coupon.cCode}
                         expiredate={coupon.eDate}
                         createddate={coupon.cDate}
                       />
-                    </a>
-                  ))}
-                  <Button
-                    size='normal'
-                    color='filledPrimary'
-                    title='Create Coupon'
+                    </div>
 
-                    // onPress={handleSubmit}
-                    // onClick={() => alert("Button clicked!")}
-                  ></Button>
-                </div>
-              </div>{" "}
+                    <div className={styles.buttonWrapper}>
+                      {coupon.status == "Active" && (
+                        <div onClick={() => deActivateCoupens(coupon._id)}>
+                          <Button
+                            size='normal'
+                            color='shadedDanger'
+                            title='Deactivate'
+                          ></Button>
+                        </div>
+                      )}
+                      {(coupon.status == "Pending" ||
+                        coupon.status == "Deactive") && (
+                        <div onClick={() => activateCoupens(coupon._id)}>
+                          <Button
+                            size='normal'
+                            color='shadedDanger'
+                            title='Activate'
+                          ></Button>
+                        </div>
+                      )}
+                      <Button
+                        onClick={() => deleteCoupens(coupon._id)}
+                        size='normal'
+                        color='filledDanger'
+                        title='Delete'
+                      ></Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </main>
-      {/* <div className={styles.foot}>
-        <FooterSpecial />
-      </div> */}
     </>
   );
 }
