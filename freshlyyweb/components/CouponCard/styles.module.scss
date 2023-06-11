@@ -1,0 +1,51 @@
+
+
+
+
+
+
+
+.cccard {
+  width: 270px;
+  height: 170px;
+  background-color: var(--overlay);
+  border-radius: 10px;
+  margin: 10px 10px;
+  margin-left: 30px;
+}
+// .icon {
+//   margin-left: 90px;
+//   margin-top: 20px;
+//   width: 50px;
+//   height: 50px;
+//   color: var(--primary);
+// }
+.percent{
+  text-align: center;
+  margin-top: 14px;
+  margin-left: 5px;
+}
+.ccode {
+  text-align: center;
+  margin-top: 14px;
+  margin-left: 5px;
+
+}
+.edate {
+  text-align: center;
+  margin-top: 14px;
+  margin-left: 5px;
+}
+.cdate{
+  text-align: center;
+  margin-top: 14px;
+  margin-left: 5px;
+}
+.line {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: -20px;
+margin-left: 20px;
+margin-top: -5px;
+
+}

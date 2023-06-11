@@ -42,11 +42,11 @@ export default function () {
   const API = process.env.NEXT_PUBLIC_FRESHLYY_API;
   const [data, setData] = React.useState({});
   React.useEffect(() => {
-    fetch(API + "/farmer/adminDashboard/", {
+    fetch(API + "/admin/adminDashboard/", {
       //getting data from the backend (all products)
       method: "GET",
       headers: {
-        useremail: "harini@freshlyy.com",
+        useremail: "hasathcharu@icloud.com",
       },
     })
       .then((res) => res.json())
@@ -92,7 +92,7 @@ export default function () {
             />
             <Admincard
               icon={faBasketShopping}
-              number={data.numOfLiveProducts}
+              number={data.numOfProducts}
               admintitle="Products"
             />
             <Admincard
