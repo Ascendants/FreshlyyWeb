@@ -19,7 +19,9 @@
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",
     "font-awesome": "^4.7.0",
+    "formik": "^2.4.1",
     "framer-motion": "^8.2.4",
+    "moment": "^2.29.4",
     "next": "13.1.1",
     "react": "18.2.0",
     "react-beautiful-dnd": "^13.1.1",
@@ -28,6 +30,7 @@
     "react-scroll": "^1.8.9",
     "saas": "^1.0.0",
     "sass": "^1.60.0",
-    "validator": "^13.7.0"
+    "validator": "^13.7.0",
+    "yup": "^1.2.0"
   }
 }

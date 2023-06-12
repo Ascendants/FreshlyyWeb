@@ -14,30 +14,15 @@ import ticketlogo from "../../images/ticket.png";
 import statlogo from "../../images/Statistics.png";
 import settingslogo from "../../images/settings.png";
 import logoutlogo from "../../images/logout.png";
-import ascendants from "../../images/ascendantst.svg";
-import Link from "next/link";
-import {
-  faBasketShopping,
-  faBorderAll,
-  faBoxesPacking,
-  faChartLine,
-  faMoneyBillTransfer,
-  faRightToBracket,
-  faTags,
-  faTicket,
-  faUsers,
-} from "@fortawesome/free-solid-svg-icons";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faIdCard, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
-import {} from "@fortawesome/free-brands-svg-icons";
-
-import FooterSpecial from "../../components/FooterSpecial";
-import Adminmain from "../../images/Adminmain.png.png";
-import Admincard from "../../components/Admincard";
 import styles from "./styles.module.scss";
+import { useRouter } from "next/router";
 
 export default function () {
+  const handlCClick = () => {
+    router.push("/createcoupon");
+  };
+  const router = useRouter();
   return (
     <>
       <section className={styles.navbar}>
@@ -46,13 +31,13 @@ export default function () {
             <div className={styles.logoarea}>
               <Image
                 src={logo}
-                alt="Freshlyy Logo"
+                alt='Freshlyy Logo'
                 className={styles.logo}
                 priority
               />
             </div>
             <div className={styles.adminlogo}>
-              <Image src={adminlogo} className={styles.adminimage} alt="Shop" />
+              <Image src={adminlogo} className={styles.adminimage} alt='Shop' />
             </div>
             <div className={styles.menu}>
               <ul className={styles.menuItems}>
@@ -61,7 +46,7 @@ export default function () {
                   <Image
                     src={dashboardlogo}
                     className={styles.dashimage}
-                    alt="Product"
+                    alt='Product'
                   />
                   <H5> Dashboard </H5>
                 </li>
@@ -70,7 +55,7 @@ export default function () {
                   <Image
                     src={productlogo}
                     className={styles.proimage}
-                    alt="Product"
+                    alt='Product'
                   />
                   <H5> Products </H5>{" "}
                 </li>
@@ -79,15 +64,15 @@ export default function () {
                   <Image
                     src={userlogo}
                     className={styles.userimage}
-                    alt="Product"
+                    alt='Product'
                   />
                   <H5> Users </H5>
                 </li>
-                <li className={styles.liItems}>
+                <li className={styles.liItems} onClick={handlCClick}>
                   <Image
                     src={couponlogo}
                     className={styles.couponimage}
-                    alt="Product"
+                    alt='Product'
                   />
                   <H5> Coupons </H5>
                 </li>
@@ -95,7 +80,7 @@ export default function () {
                   <Image
                     src={ticketlogo}
                     className={styles.ticketimage}
-                    alt="Product"
+                    alt='Product'
                   />
                   <H5> Support Tickets</H5>
                 </li>
@@ -103,7 +88,7 @@ export default function () {
                   <Image
                     src={statlogo}
                     className={styles.statimage}
-                    alt="Product"
+                    alt='Product'
                   />
                   <H5> Statistics</H5>
                 </li>
@@ -111,7 +96,7 @@ export default function () {
                   <Image
                     src={settingslogo}
                     className={styles.setimage}
-                    alt="Product"
+                    alt='Product'
                   />
                   <H5> Settings </H5>
                 </li>
@@ -119,7 +104,7 @@ export default function () {
                   <Image
                     src={logoutlogo}
                     className={styles.logoutimage}
-                    alt="Product"
+                    alt='Product'
                   />
                   <H6> Logout </H6>
                 </li>

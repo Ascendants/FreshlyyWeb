@@ -22,9 +22,9 @@ export default function () {
     fetchCoupons();
   }, []);
   const fetchCoupons = async () => {
-    const response = await fetch(API + "/admin/editCoupons/");
+    const response = await fetch(API + "/admin/coupons/");
     const data = await response.json();
-    setCoupons(data.coupon);
+    setCoupons(data.coupons);
   };
   console.log(coupons);
 
@@ -42,23 +42,9 @@ export default function () {
     fetchCoupons();
   };
 
-  // const PendingCoupens = (id) => {
-  //   const dataurl = API + `/admin/updateCoupons/${id}`;
-  //   axios.put(
-  //     dataurl,
-  //     { status: "Pending" },
-  //     {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     }
-  //   );
-  //   fetchCoupons();
-  // };
-
-  const deActivateCoupens = async (id) => {
+  const deActivateCoupens = (id) => {
     const dataurl = API + `/admin/updateCoupons/${id}`;
-    await axios.put(
+    axios.put(
       dataurl,
       { status: "Deactive" },
       {
@@ -70,30 +56,11 @@ export default function () {
     fetchCoupons();
   };
 
-  const deleteCoupon = async (id) => {
+  const deleteCoupens = (id) => {
     const dataurl = API + `/admin/updateCoupons/${id}`;
-    try {
-      await axios.put(
-        dataurl,
-        { status: "delete" },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      fetchCoupons();
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const updateCouponStatus = async (id, newStatus) => {
-    const dataurl = API + `/admin/updateCoupons/${id}`;
-    await axios.put(
+    axios.put(
       dataurl,
-      { status: newStatus },
+      { status: "delete" },
       {
         headers: {
           "Content-Type": "application/json",
@@ -138,11 +105,7 @@ export default function () {
 
                     <div className={styles.buttonWrapper}>
                       {coupon.status == "Active" && (
-                        <div
-                          onClick={() =>
-                            updateCouponStatus(coupon._id, "Deactive")
-                          }
-                        >
+                        <div onClick={() => deActivateCoupens(coupon._id)}>
                           <Button
                             size='normal'
                             color='shadedDanger'
@@ -153,11 +116,7 @@ export default function () {
                       {(coupon.status == "Pending" ||
                         coupon.status == "Deactive" ||
                         coupon.status == "Paused") && (
-                        <div
-                          onClick={() =>
-                            updateCouponStatus(coupon._id, "Active")
-                          }
-                        >
+                        <div onClick={() => activateCoupens(coupon._id)}>
                           <Button
                             size='normal'
                             color='shadedPrimary'
@@ -165,7 +124,7 @@ export default function () {
                           ></Button>
                         </div>
                       )}
-                      <div onClick={() => deleteCoupon(coupon._id)}>
+                      <div onClick={() => deleteCoupens(coupon._id)}>
                         <Button
                           size='normal'
                           color='filledDanger'

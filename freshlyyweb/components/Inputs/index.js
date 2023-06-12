@@ -4,6 +4,9 @@ import { faCircleArrowUp } from "@fortawesome/free-solid-svg-icons";
 import styles from "./styles.module.scss";
 
 module.exports.TextInput = (props) => {
+  const handleChange = (event) => {
+    props.onChange(event.target.value);
+  };
   return (
     <div className={styles.inputBox}>
       <span>{props.domName}</span>
@@ -13,7 +16,7 @@ module.exports.TextInput = (props) => {
           value={props.value}
           name={props.name}
           placeholder={props.placeholder}
-          onChange={props.handleChange}
+          onChange={handleChange}
           className={styles.input}
         />
       )}

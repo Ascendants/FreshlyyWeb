@@ -65,49 +65,58 @@ export default function () {
         </div>
         <div className={styles.maincont}>
           <div className={styles.mainImg}>
-            <Image src={Adminmain} className={styles.mainimage} alt="Main" />
+            <Image src={Adminmain} className={styles.mainimage} alt='Main' />
           </div>
           <div className={styles.boxcon}>
             <Admincard
               icon={faIdCard}
               number={40}
-              admintitle="Pending NIC Requests"
+              admintitle='Pending NIC Requests'
             />
             <Admincard
               icon={faBoxesPacking}
-              number={6}
-              admintitle="Pending Products"
+              number={data.numOfPendingProducts}
+              admintitle='Pending Products'
             />
             <Admincard
               icon={faMoneyBillTransfer}
-              number={10}
-              admintitle="Withdraw Requests"
+              number={data.numOfWithdrawRequests}
+              admintitle='Withdraw Requests'
             />
           </div>
           <div className={styles.boxcon2}>
             <Admincard
               icon={faTicket}
               number={data.numOfSupportTickets}
-              admintitle="Assigned Support Tickets"
+              admintitle='Assigned Support Tickets'
             />
             <Admincard
               icon={faBasketShopping}
               number={data.numOfProducts}
-              admintitle="Products"
+              admintitle='Products'
             />
             <Admincard
               icon={faUsers}
               number={data.numOfUsers}
-              admintitle="Users"
+              admintitle='Users'
             />
           </div>
           <div className={styles.boxcon3}>
-            <Admincard icon={faTags} number={10} admintitle="Active Coupons" />
-            <Admincard icon={faChartLine} number={4} admintitle="Statistics" />
+            <Admincard
+              icon={faTags}
+              number={data.numOfActiveCoupons}
+              admintitle='Active Coupons'
+            />
+            <Admincard
+              icon={faChartLine}
+              number={data.numOfReports}
+              admintitle='Statistics'
+            />
+
             <Admincard
               icon={faThumbsDown}
               number={20}
-              admintitle="Reported Reviews"
+              admintitle='Reported Reviews'
             />
           </div>
         </div>
