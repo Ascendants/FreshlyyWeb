@@ -71,9 +71,9 @@ export default function Home() {
   const ticketStatus = ticket.status;
   const updatedStatus = () => {
     if (ticketStatus === 'Pending') {
-      return 'Progress';
-    } else {
-      return 'Completed';
+      return 'Processing';
+    } else if (ticketStatus === 'Processing') {
+      return 'Complete';
     }
   };
 
@@ -86,6 +86,7 @@ export default function Home() {
         },
         body: JSON.stringify({ status }),
       });
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -123,25 +124,16 @@ export default function Home() {
             <P>Description: {ticket.description}</P>
             <P>Status: {ticket.status}</P>
           </motion.div>
-          {ticket.orderId && (
-            <motion.div variants={inView} initial='hidden' animate='enter'>
-              <H5>Farmer Details</H5>
-              <P>ID: #{order._id}</P>
-              <P>Farmer: {order.farmer}</P>
-              <P>Customer: {order.customer}</P>
-              <P>Is Delivery: {order.isDelivery}</P>
-              <P>Farmer Rating: {order.farmerRating}</P>
-              {/* <P>Farmer: {order.farmer}</P> */}
-            </motion.div>
-          )}
         </div>
         <div style={styles.btnContainer}>
-          <button style={styles.btn} onClick={() => deleteTicket(ticket._id)}>
-            <H9 style={{ color: theme.contrastTextColor, textAlign: 'center' }}>
-              Delete
-            </H9>
-          </button>
-          {ticket.status !== 'Completed' && (
+          {ticket.status === 'Complete' && (
+            <button style={styles.btn} onClick={() => deleteTicket(ticket._id)}>
+              <H9 style={{ color: theme.contrastTextColor, textAlign: 'center' }}>
+                Delete
+              </H9>
+            </button>
+          )}
+          {ticket.status !== 'Complete' && (
             <button
               style={styles.btn2}
               onClick={() => updateTicketStatus(ticket._id, updatedStatus())}

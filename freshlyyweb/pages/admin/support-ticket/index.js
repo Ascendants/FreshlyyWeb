@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { P, H1, H2, H3, H4, H5, H6, H7, H8, H9, Pr } from '../../../components/Texts';
@@ -17,21 +17,21 @@ const DragDropContext = dynamic(
     import('react-beautiful-dnd').then(mod => {
       return mod.DragDropContext;
     }),
-  {ssr: false},
+  { ssr: false },
 );
 const Droppable = dynamic(
   () =>
     import('react-beautiful-dnd').then(mod => {
       return mod.Droppable;
     }),
-  {ssr: false},
+  { ssr: false },
 );
 const Draggable = dynamic(
   () =>
     import('react-beautiful-dnd').then(mod => {
       return mod.Draggable;
     }),
-  {ssr: false},
+  { ssr: false },
 );
 
 
@@ -58,17 +58,17 @@ export default function Home() {
     setTickets(data.supportTicket);
   }
 
-  async function updateTicketStatus(id, status){
+  async function updateTicketStatus(id, status) {
     try {
-      await fetch(API + `/farmer/update-support-ticket/${id}`,{
+      await fetch(API + `/farmer/update-support-ticket/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ status }),
       });
-      const updatedTickets = tickets.map((ticket) => 
-      ticket._id === id ? {...ticket, status} : ticket
+      const updatedTickets = tickets.map((ticket) =>
+        ticket._id === id ? { ...ticket, status } : ticket
       );
       setTickets(updatedTickets);
     } catch (error) {
@@ -84,14 +84,14 @@ export default function Home() {
 
     setDraggedItem(null);
 
-    if(!result.destination){
+    if (!result.destination) {
       return;
     }
 
     const sourceIndex = result.source.index;
     const destinationIndex = result.destination.index;
 
-    if(sourceIndex === destinationIndex){
+    if (sourceIndex === destinationIndex) {
       return;
     }
 
@@ -129,156 +129,156 @@ export default function Home() {
         <H3 style={styles.topic}>Support Ticket Managment</H3>
         <div style={styles.container}>
           <DragDropContext onDragEnd={onDragEnd}>
-          <div style={styles.column}>
-            <H4 style={{color: theme.secondary}}>Pending</H4>
-            <Droppable droppableId='Pending'>
-              {(provided) => (
-                <ul
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                  style={styles.ul}
-                >
-                  {tickets
-                    .filter((ticket) => ticket.status === "Pending")
-                    .map((ticket, index) => (
-                      <Draggable key={ticket._id} draggableId={ticket._id} index={index} onDragStart={onDragStart} >
-                        {(provided, snapshot) => (
-                        <li
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={{
-                            ...styles.card,
-                            backgroundColor: theme.secondaryShade,
-                            opacity: snapshot.isDragging
-                              ? draggedItem?._id === ticket._id
-                                ? 0
-                                : 0.5
-                              : 1,
-                            boxShadow:
-                              snapshot.isDragging && draggedItem?._id === ticket._id
-                                ? '0 0 8px 2px rgba(0, 0, 0, 0.2)'
-                                : 'none',
-                            ...provided.draggableProps.style,
-                          }}
-                        >
-                          <H9>ID: {ticket._id}</H9>
-                          <H9>UserEmail: {ticket.userEmail}</H9>
-                          <H9>Name: {ticket.name}</H9>
-                          <H9>Issue: {ticket.issue}</H9>
-                          {ticket.orderId && <H9>Order ID: {ticket.orderId}</H9>}
-                          <div style={styles.buttonContainer}>
-                            <button style={{...styles.btn, backgroundColor:theme.secondary}} onClick={()=>router.push('./support-ticket/ticket/' + ticket._id)}>Details</button>
-                          </div> 
-                        </li>
-                      )}
-                      </Draggable>
-                    ))}
+            <div style={styles.column}>
+              <H4 style={{ color: theme.secondary }}>Pending</H4>
+              <Droppable droppableId='Pending'>
+                {(provided) => (
+                  <ul
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                    style={styles.ul}
+                  >
+                    {tickets
+                      .filter((ticket) => ticket.status === "Pending")
+                      .map((ticket, index) => (
+                        <Draggable key={ticket._id} draggableId={ticket._id} index={index} onDragStart={onDragStart} >
+                          {(provided, snapshot) => (
+                            <li
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              style={{
+                                ...styles.card,
+                                backgroundColor: theme.secondaryShade,
+                                opacity: snapshot.isDragging
+                                  ? draggedItem?._id === ticket._id
+                                    ? 0
+                                    : 0.5
+                                  : 1,
+                                boxShadow:
+                                  snapshot.isDragging && draggedItem?._id === ticket._id
+                                    ? '0 0 8px 2px rgba(0, 0, 0, 0.2)'
+                                    : 'none',
+                                ...provided.draggableProps.style,
+                              }}
+                            >
+                              <H9>ID: {ticket._id}</H9>
+                              <H9>UserEmail: {ticket.userEmail}</H9>
+                              <H9>Name: {ticket.name}</H9>
+                              <H9>Issue: {ticket.issue}</H9>
+                              {ticket.orderId && <H9>Order ID: {ticket.orderId}</H9>}
+                              <div style={styles.buttonContainer}>
+                                <button style={{ ...styles.btn, backgroundColor: theme.secondary }} onClick={() => router.push('./support-ticket/ticket/' + ticket._id)}>Details</button>
+                              </div>
+                            </li>
+                          )}
+                        </Draggable>
+                      ))}
                     {provided.placeholder}
-                </ul>
-              )}
-            </Droppable>
-          </div>
-          <div style={styles.column}>
-            <H4 style={{color: theme.warning}}>Processing</H4>
-            <Droppable droppableId='Progress'>
-              {(provided) => (
-                <ul
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                  style={styles.ul}
-                >
-                  {tickets
-                    .filter((ticket) => ticket.status === "Progress")
-                    .map((ticket, index) => (
-                      <Draggable key={ticket._id} draggableId={ticket._id} index={index} onDragStart={onDragStart}>
-                        {(provided, snapshot) => (
-                        <li
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={{
-                            ...styles.card,
-                            backgroundColor: theme.warningShade,
-                            opacity: snapshot.isDragging
-                              ? draggedItem?._id === ticket._id
-                                ? 0
-                                : 0.5
-                              : 1,
-                            boxShadow:
-                              snapshot.isDragging && draggedItem?._id === ticket._id
-                                ? '0 0 8px 2px rgba(0, 0, 0, 0.2)'
-                                : 'none',
-                            ...provided.draggableProps.style,
-                          }}
-                        >
-                          <H9>ID: {ticket._id}</H9>
-                          <H9>UserEmail: {ticket.userEmail}</H9>
-                          <H9>Name: {ticket.name}</H9>
-                          <H9>Issue: {ticket.issue}</H9>
-                          {ticket.orderId && <H9>Order ID: {ticket.orderId}</H9>}
-                          <div style={styles.buttonContainer}>
-                            <button style={{...styles.btn, backgroundColor:theme.warning}} onClick={()=>router.push('./support-ticket/ticket/' + ticket._id)}>Details</button>
-                          </div> 
-                        </li>
-                      )}
-                      </Draggable>
-                    ))}
+                  </ul>
+                )}
+              </Droppable>
+            </div>
+            <div style={styles.column}>
+              <H4 style={{ color: theme.warning }}>Processing</H4>
+              <Droppable droppableId='Processing'>
+                {(provided) => (
+                  <ul
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                    style={styles.ul}
+                  >
+                    {tickets
+                      .filter((ticket) => ticket.status === "Processing")
+                      .map((ticket, index) => (
+                        <Draggable key={ticket._id} draggableId={ticket._id} index={index} onDragStart={onDragStart}>
+                          {(provided, snapshot) => (
+                            <li
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              style={{
+                                ...styles.card,
+                                backgroundColor: theme.warningShade,
+                                opacity: snapshot.isDragging
+                                  ? draggedItem?._id === ticket._id
+                                    ? 0
+                                    : 0.5
+                                  : 1,
+                                boxShadow:
+                                  snapshot.isDragging && draggedItem?._id === ticket._id
+                                    ? '0 0 8px 2px rgba(0, 0, 0, 0.2)'
+                                    : 'none',
+                                ...provided.draggableProps.style,
+                              }}
+                            >
+                              <H9>ID: {ticket._id}</H9>
+                              <H9>UserEmail: {ticket.userEmail}</H9>
+                              <H9>Name: {ticket.name}</H9>
+                              <H9>Issue: {ticket.issue}</H9>
+                              {ticket.orderId && <H9>Order ID: {ticket.orderId}</H9>}
+                              <div style={styles.buttonContainer}>
+                                <button style={{ ...styles.btn, backgroundColor: theme.warning }} onClick={() => router.push('./support-ticket/ticket/' + ticket._id)}>Details</button>
+                              </div>
+                            </li>
+                          )}
+                        </Draggable>
+                      ))}
                     {provided.placeholder}
-                </ul>
-              )}
-            </Droppable>
-          </div>
-          <div style={styles.column}>
-            <H4 style={styles.columnTopic}>Complete</H4>
-            <Droppable droppableId='Complete'>
-              {(provided) => (
-                <ul
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                  style={styles.ul}
-                >
-                  {tickets
-                    .filter((ticket) => ticket.status === "Complete")
-                    .map((ticket, index) => (
-                      <Draggable key={ticket._id} draggableId={ticket._id} index={index} onDragStart={onDragStart}>
-                        {(provided, snapshot) => (
-                        <li
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={{
-                            ...styles.card,
-                            opacity: snapshot.isDragging
-                              ? draggedItem?._id === ticket._id
-                                ? 0
-                                : 0.5
-                              : 1,
-                            boxShadow:
-                              snapshot.isDragging && draggedItem?._id === ticket._id
-                                ? '0 0 8px 2px rgba(0, 0, 0, 0.2)'
-                                : 'none',
-                            ...provided.draggableProps.style,
-                          }}
-                        >
-                          <H9>ID: {ticket._id}</H9>
-                          <H9>UserEmail: {ticket.userEmail}</H9>
-                          <H9>Name: {ticket.name}</H9>
-                          <H9>Contact Number: {ticket.number}</H9>
-                          <H9>Issue: {ticket.issue}</H9>
-                          {ticket.orderId && <H9>Order ID: {ticket.orderId}</H9>}
-                          <div style={styles.buttonContainer}>
-                            <button style={{...styles.btn, backgroundColor:theme.primary}} onClick={()=>router.push('./support-ticket/ticket/' + ticket._id)}>Details</button>
-                          </div>              
-                        </li>
-                      )}
-                      </Draggable>
-                    ))}
+                  </ul>
+                )}
+              </Droppable>
+            </div>
+            <div style={styles.column}>
+              <H4 style={styles.columnTopic}>Complete</H4>
+              <Droppable droppableId='Complete'>
+                {(provided) => (
+                  <ul
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                    style={styles.ul}
+                  >
+                    {tickets
+                      .filter((ticket) => ticket.status === "Complete")
+                      .map((ticket, index) => (
+                        <Draggable key={ticket._id} draggableId={ticket._id} index={index} onDragStart={onDragStart}>
+                          {(provided, snapshot) => (
+                            <li
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              style={{
+                                ...styles.card,
+                                opacity: snapshot.isDragging
+                                  ? draggedItem?._id === ticket._id
+                                    ? 0
+                                    : 0.5
+                                  : 1,
+                                boxShadow:
+                                  snapshot.isDragging && draggedItem?._id === ticket._id
+                                    ? '0 0 8px 2px rgba(0, 0, 0, 0.2)'
+                                    : 'none',
+                                ...provided.draggableProps.style,
+                              }}
+                            >
+                              <H9>ID: {ticket._id}</H9>
+                              <H9>UserEmail: {ticket.userEmail}</H9>
+                              <H9>Name: {ticket.name}</H9>
+                              <H9>Contact Number: {ticket.number}</H9>
+                              <H9>Issue: {ticket.issue}</H9>
+                              {ticket.orderId && <H9>Order ID: {ticket.orderId}</H9>}
+                              <div style={styles.buttonContainer}>
+                                <button style={{ ...styles.btn, backgroundColor: theme.primary }} onClick={() => router.push('./support-ticket/ticket/' + ticket._id)}>Details</button>
+                              </div>
+                            </li>
+                          )}
+                        </Draggable>
+                      ))}
                     {provided.placeholder}
-                </ul>
-              )}
-            </Droppable>
-          </div>
+                  </ul>
+                )}
+              </Droppable>
+            </div>
           </DragDropContext>
         </div>
       </main>
@@ -313,14 +313,21 @@ const styles = {
     textAlign: 'center',
   },
   topic: {
+    backgroundColor: 'red',
+    padding: 10,
+    placeSelf: 'center',
     textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
+
   },
-  columnTopic:{
+  columnTopic: {
     color: theme.primary,
   },
   ul: {
     listStyleType: 'none',
-    margin:0,
+    margin: 0,
     padding: 0,
   },
   card: {
@@ -329,9 +336,9 @@ const styles = {
     marginBottom: 20,
     textAlign: 'left',
     padding: 5,
-    
+
   },
-  btn:{
+  btn: {
     backgroundColor: theme.secondaryShade,
     padding: 4,
     borderRadius: 5,
@@ -341,7 +348,7 @@ const styles = {
     marginLeft: 5,
     color: theme.contrastTextColor,
   },
-  buttonContainer:{
+  buttonContainer: {
     display: 'flex',
     justifyContent: 'right',
     marginRight: 5,
@@ -350,7 +357,7 @@ const styles = {
 };
 
 export async function getServerSideProps() {
-  
+
   return {
     props: {},
   };
