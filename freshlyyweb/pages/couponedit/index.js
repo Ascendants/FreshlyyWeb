@@ -28,67 +28,6 @@ export default function () {
   };
   console.log(coupons);
 
-  const activateCoupens = (id) => {
-    const dataurl = API + `/admin/updateCoupons/${id}`;
-    axios.put(
-      dataurl,
-      { status: "Active" },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    fetchCoupons();
-  };
-
-  // const PendingCoupens = (id) => {
-  //   const dataurl = API + `/admin/updateCoupons/${id}`;
-  //   axios.put(
-  //     dataurl,
-  //     { status: "Pending" },
-  //     {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     }
-  //   );
-  //   fetchCoupons();
-  // };
-
-  const deActivateCoupens = async (id) => {
-    const dataurl = API + `/admin/updateCoupons/${id}`;
-    await axios.put(
-      dataurl,
-      { status: "Deactive" },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    fetchCoupons();
-  };
-
-  const deleteCoupon = async (id) => {
-    const dataurl = API + `/admin/updateCoupons/${id}`;
-    try {
-      await axios.put(
-        dataurl,
-        { status: "delete" },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      fetchCoupons();
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const updateCouponStatus = async (id, newStatus) => {
     const dataurl = API + `/admin/updateCoupons/${id}`;
     await axios.put(
@@ -165,7 +104,9 @@ export default function () {
                           ></Button>
                         </div>
                       )}
-                      <div onClick={() => deleteCoupon(coupon._id)}>
+                      <div
+                        onClick={() => updateCouponStatus(coupon._id, "delete")}
+                      >
                         <Button
                           size='normal'
                           color='filledDanger'

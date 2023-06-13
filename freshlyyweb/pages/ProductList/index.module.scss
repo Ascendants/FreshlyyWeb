@@ -1,0 +1,102 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh ;
+}
+
+.maincont {
+  display: flex;
+  flex: 1;
+
+  flex-direction: column;
+}
+.mainImg {
+  justify-content: center;
+  align-items: center;
+  margin-left: 60px;
+}
+.mainimage {
+  width: 1000px;
+  align-items: center;
+}
+
+
+.footer {
+  margin-bottom: -1000px;
+}
+.sideimage {
+  width: 320px;
+  align-items: right;
+  height: 230px;
+}
+.mainImg {
+  justify-content: flex-end;
+  align-items: right;
+  margin-left: 900px;
+}
+.line {
+  margin-top: -180px;
+  margin-left: 60px;
+  gap: 50,
+}
+.cu{
+  margin-top: 40px;
+  margin-left: 40px;
+}
+.maincont {
+  display: flex;
+  flex: 1;
+  
+  flex-direction: column;
+}
+.form {
+  background-color: var(--tertiaryShade);
+  width: 50rem;
+ margin-left: 2.5rem;
+ border-radius: 5px;
+ display: flex;
+ flex-direction: column;
+ padding: 1rem;
+ 
+
+ 
+
+
+}
+.coupon {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.couponWrap{
+  display:flex;
+}
+
+
+.form input{
+margin-left: 10px;
+margin-top: 10px;
+}
+
+.form button{
+ margin-left: 5rem;
+margin-bottom: 2rem;
+align-items: center;
+margin-top: 5rem;
+}
+.couponcard {
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+
+}
+.buttonWrapper {
+display: flex;
+flex-direction: rows;
+
+}
+.main {
+width: 100vw;
+margin:auto;
+}

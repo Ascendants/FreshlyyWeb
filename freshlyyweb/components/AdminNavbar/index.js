@@ -22,6 +22,9 @@ export default function () {
   const handlCClick = () => {
     router.push("/createcoupon");
   };
+  const handledash = () => {
+    router.push("/dashboard");
+  };
   const router = useRouter();
   return (
     <>
@@ -41,7 +44,11 @@ export default function () {
             </div>
             <div className={styles.menu}>
               <ul className={styles.menuItems}>
-                <li className={styles.liItems}>
+                <li
+                  className={styles.liItems}
+                  onClick={handledash}
+                  style={{ cursor: "pointer" }}
+                >
                   {/* <FontAwesomeIcon icon={faBorderAll} style={styles.dashicon} /> */}
                   <Image
                     src={dashboardlogo}
@@ -68,7 +75,11 @@ export default function () {
                   />
                   <H5> Users </H5>
                 </li>
-                <li className={styles.liItems} onClick={handlCClick}>
+                <li
+                  className={styles.liItems}
+                  onClick={handlCClick}
+                  style={{ cursor: "pointer" }}
+                >
                   <Image
                     src={couponlogo}
                     className={styles.couponimage}

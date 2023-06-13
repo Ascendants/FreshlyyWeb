@@ -28,39 +28,11 @@ export default function () {
   };
   console.log(coupons);
 
-  const activateCoupens = (id) => {
+  const updateCoupens = (Status, id) => {
     const dataurl = API + `/admin/updateCoupons/${id}`;
     axios.put(
       dataurl,
-      { status: "Active" },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    fetchCoupons();
-  };
-
-  const deActivateCoupens = (id) => {
-    const dataurl = API + `/admin/updateCoupons/${id}`;
-    axios.put(
-      dataurl,
-      { status: "Deactive" },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    fetchCoupons();
-  };
-
-  const deleteCoupens = (id) => {
-    const dataurl = API + `/admin/updateCoupons/${id}`;
-    axios.put(
-      dataurl,
-      { status: "delete" },
+      { status: Status },
       {
         headers: {
           "Content-Type": "application/json",
@@ -88,7 +60,7 @@ export default function () {
             </div>
             <div className={styles.line}>
               <H2>Coupons</H2>
-              <H3>Coupon List</H3>
+              <H3>Farmer Requested Coupons</H3>
             </div>
             <div className={styles.form}>
               <div className={styles.coupon}>
@@ -105,7 +77,9 @@ export default function () {
 
                     <div className={styles.buttonWrapper}>
                       {coupon.status == "Active" && (
-                        <div onClick={() => deActivateCoupens(coupon._id)}>
+                        <div
+                          onClick={() => updateCoupens("Deactive", coupon._id)}
+                        >
                           <Button
                             size='normal'
                             color='shadedDanger'
@@ -116,7 +90,9 @@ export default function () {
                       {(coupon.status == "Pending" ||
                         coupon.status == "Deactive" ||
                         coupon.status == "Paused") && (
-                        <div onClick={() => activateCoupens(coupon._id)}>
+                        <div
+                          onClick={() => updateCoupens("Active", coupon._id)}
+                        >
                           <Button
                             size='normal'
                             color='shadedPrimary'
@@ -124,11 +100,11 @@ export default function () {
                           ></Button>
                         </div>
                       )}
-                      <div onClick={() => deleteCoupens(coupon._id)}>
+                      <div onClick={() => updateCoupens("delete", coupon._id)}>
                         <Button
                           size='normal'
                           color='filledDanger'
-                          title='Delete'
+                          title='Reject'
                         ></Button>
                       </div>
                     </div>
