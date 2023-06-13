@@ -3,7 +3,7 @@ import { P, H3, H5, H4, H6, H2, A, H1 } from "../../components/Texts";
 import theme from "../../styles/theme";
 import logo from "../../images/logo.svg";
 import Image from "next/image";
-import {} from "@fortawesome/free-brands-svg-icons";
+import { } from "@fortawesome/free-brands-svg-icons";
 import axios from "axios";
 import Adminmain from "../../images/Adminmain.png.png";
 import Admincard from "../../components/Admincard";
@@ -110,7 +110,7 @@ export default function () {
         return !isNaN(value);
       })
       .required("Percentage is required")
-      .min(0, "Percentage must be greater than or equal to 0")
+      .min(1, "Percentage must be greater than or equal to 1")
       .max(100, "Percentage cannot be more than 100"),
     expiredate: Yup.string()
       .required("Expire Date is required")
@@ -182,6 +182,7 @@ export default function () {
                       couponcode={coupon.cCode}
                       expiredate={coupon.eDate}
                       createddate={coupon.cDate}
+                      status={coupon.status}
                     />
                   ))}
                 </div>

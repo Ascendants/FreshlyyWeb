@@ -3,7 +3,7 @@ import { P, H3, H5, H6, H2, A, H1 } from "../../components/Texts";
 import theme from "../../styles/theme";
 import logo from "../../images/logo.svg";
 import Image from "next/image";
-import {} from "@fortawesome/free-brands-svg-icons";
+import { } from "@fortawesome/free-brands-svg-icons";
 import axios from "axios";
 import Adminmain from "../../images/Adminmain.png.png";
 import Admincard from "../../components/Admincard";
@@ -72,6 +72,7 @@ export default function () {
                         couponcode={coupon.cCode}
                         expiredate={coupon.eDate}
                         createddate={coupon.cDate}
+                        status={coupon.status}
                       />
                     </div>
 
@@ -92,18 +93,18 @@ export default function () {
                       {(coupon.status == "Pending" ||
                         coupon.status == "Deactive" ||
                         coupon.status == "Paused") && (
-                        <div
-                          onClick={() =>
-                            updateCouponStatus(coupon._id, "Active")
-                          }
-                        >
-                          <Button
-                            size='normal'
-                            color='shadedPrimary'
-                            title='Activate'
-                          ></Button>
-                        </div>
-                      )}
+                          <div
+                            onClick={() =>
+                              updateCouponStatus(coupon._id, "Active")
+                            }
+                          >
+                            <Button
+                              size='normal'
+                              color='shadedPrimary'
+                              title='Activate'
+                            ></Button>
+                          </div>
+                        )}
                       <div
                         onClick={() => updateCouponStatus(coupon._id, "delete")}
                       >

@@ -2,8 +2,8 @@ import React from "react";
 import theme from "../../styles/theme";
 import { H5, P, H6, H3 } from "../Texts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {} from "@fortawesome/free-regular-svg-icons";
-import {} from "@fortawesome/free-brands-svg-icons";
+import { } from "@fortawesome/free-regular-svg-icons";
+import { } from "@fortawesome/free-brands-svg-icons";
 import styles from "./styles.module.scss";
 
 export default function (props) {
@@ -27,7 +27,12 @@ export default function (props) {
           <P> Expire Date:</P>
           <H6 className={styles.edate}>{props.expiredate}</H6>
         </div>
+        <div className={styles.line}>
+          <P> Status:</P>
+          <H6 className={styles.cstatus}>{props.status}</H6>
+        </div>
       </div>
+
     </>
   );
 }
